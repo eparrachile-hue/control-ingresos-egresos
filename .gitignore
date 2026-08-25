@@ -1,0 +1,7 @@
+node_modules/
+data.json
+data.json.tmp
+
+# Otros proyectos/config en esta misma carpeta que no son parte de esta app
+condominios-app/
+.claude/

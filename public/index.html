@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Ingresos y Egresos</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-icon">💰</span>
+    <span class="brand-name">Mis Finanzas</span>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-view="dashboard">Dashboard</button>
+    <button class="tab-btn" data-view="ingresos">Ingresos</button>
+    <button class="tab-btn" data-view="gastosFijos">Gastos Fijos</button>
+    <button class="tab-btn" data-view="gastosVariables">Gastos Variables</button>
+    <button class="tab-btn" data-view="bolsillos">Bolsillos</button>
+  </nav>
+  <div class="save-indicator" id="saveIndicator">Guardado</div>
+</header>
+
+<main id="app">
+
+  <!-- DASHBOARD -->
+  <section class="view" id="view-dashboard">
+    <div class="month-selector">
+      <button id="prevMonth" class="icon-btn" aria-label="Mes anterior">‹</button>
+      <h2 id="currentMonthLabel">Agosto 2026</h2>
+      <button id="nextMonth" class="icon-btn" aria-label="Mes siguiente">›</button>
+    </div>
+
+    <div class="card-grid" id="dashboardCards"></div>
+
+    <div class="dashboard-bottom">
+      <div class="panel">
+        <h3>Ingresos vs Gastos</h3>
+        <div class="bar-compare" id="barCompare"></div>
+      </div>
+      <div class="panel">
+        <h3>Pendientes del mes</h3>
+        <div id="pendientesList" class="pendientes-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INGRESOS -->
+  <section class="view hidden" id="view-ingresos">
+    <div class="view-header">
+      <div class="month-selector compact">
+        <button id="prevMonthIng" class="icon-btn">‹</button>
+        <h2 id="currentMonthLabelIng">Agosto 2026</h2>
+        <button id="nextMonthIng" class="icon-btn">›</button>
+      </div>
+      <button class="btn btn-primary" id="btnNuevoCondominio">+ Nuevo condominio</button>
+    </div>
+    <div class="cards-list" id="ingresosList"></div>
+  </section>
+
+  <!-- GASTOS FIJOS -->
+  <section class="view hidden" id="view-gastosFijos">
+    <div class="view-header">
+      <div class="month-selector compact">
+        <button id="prevMonthGF" class="icon-btn">‹</button>
+        <h2 id="currentMonthLabelGF">Agosto 2026</h2>
+        <button id="nextMonthGF" class="icon-btn">›</button>
+      </div>
+      <button class="btn btn-primary" id="btnNuevoGastoFijo">+ Nuevo gasto fijo</button>
+    </div>
+    <div class="cards-list" id="gastosFijosList"></div>
+  </section>
+
+  <!-- GASTOS VARIABLES -->
+  <section class="view hidden" id="view-gastosVariables">
+    <div class="view-header">
+      <div class="month-selector compact">
+        <button id="prevMonthGV" class="icon-btn">‹</button>
+        <h2 id="currentMonthLabelGV">Agosto 2026</h2>
+        <button id="nextMonthGV" class="icon-btn">›</button>
+      </div>
+      <button class="btn btn-primary" id="btnNuevoGastoVariable">+ Nuevo gasto</button>
+    </div>
+    <div class="cards-list" id="gastosVariablesList"></div>
+  </section>
+
+  <!-- BOLSILLOS -->
+  <section class="view hidden" id="view-bolsillos">
+    <div class="view-header">
+      <h2>Bolsillos</h2>
+      <button class="btn btn-primary" id="btnNuevoBolsillo">+ Nuevo bolsillo</button>
+    </div>
+    <div class="disponible-banner" id="disponibleBanner"></div>
+    <div class="card-grid" id="bolsillosGrid"></div>
+  </section>
+
+</main>
+
+<!-- MODAL GENERICO -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Título</h3>
+      <button class="icon-btn" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

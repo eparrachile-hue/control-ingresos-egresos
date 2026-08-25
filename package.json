@@ -1,0 +1,13 @@
+{
+  "name": "control-ingresos-egresos",
+  "version": "1.0.0",
+  "description": "App local de control de ingresos, gastos y bolsillos de ahorro",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
