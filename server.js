@@ -188,16 +188,30 @@ app.get('/api/export.xlsx', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+function openBrowser(url) {
+  const openCmd = process.platform === 'win32'
+    ? `start "" "${url}"`
+    : process.platform === 'darwin'
+      ? `open "${url}"`
+      : `xdg-open "${url}"`;
+  exec(openCmd, () => {});
+}
+
+const server = app.listen(PORT, () => {
   const url = `http://localhost:${PORT}`;
   console.log(`Control de Ingresos y Egresos corriendo en ${url}`);
-  if (!process.env.PORT) {
-    // Solo intenta abrir el navegador cuando corre localmente (no en un servidor hospedado).
-    const openCmd = process.platform === 'win32'
-      ? `start "" "${url}"`
-      : process.platform === 'darwin'
-        ? `open "${url}"`
-        : `xdg-open "${url}"`;
-    exec(openCmd, () => {});
+  // Solo intenta abrir el navegador cuando corre localmente (no en un servidor hospedado).
+  if (!process.env.PORT) openBrowser(url);
+});
+
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    // La app ya está corriendo: basta con abrirla en el navegador.
+    const url = `http://localhost:${PORT}`;
+    console.log(`La app ya estaba corriendo. Abriendo ${url} ...`);
+    if (!process.env.PORT) openBrowser(url);
+  } else {
+    console.error('No se pudo iniciar el servidor:', err.message);
+    process.exitCode = 1;
   }
 });
